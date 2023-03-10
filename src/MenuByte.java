@@ -23,15 +23,11 @@ public class MenuByte extends JFrame implements ActionListener {
 	
 	MenuByte(){
 		
-		
-		
-		 combo();
+    	 combo();
 		 editText();
 		 botones();
 		 cuadro();
 			
-	
-		
 	}
 
 	
@@ -96,6 +92,29 @@ public class MenuByte extends JFrame implements ActionListener {
      		this.pack();
      		
  	}
+         
+    public Boolean validarNumero(String numero) {
+        	 
+        	 char array[] = numero.toCharArray();
+ 
+        	 System.out.println("paso "+numero.length());
+        	 for (int i = 0; i < numero.length(); i++) {
+        		 
+        		 int letra=array[i];
+                
+        		 if((letra<48)||(letra>57)&&(letra!=46)){
+		       	  
+        			 JOptionPane.showMessageDialog(null,"Ingresa sólo números");
+        			
+        			 return false;
+                 }
+        		 
+             }   	 
+        	
+        	 return true;
+         }
+         
+         
 
 	
 	
@@ -144,8 +163,7 @@ public class MenuByte extends JFrame implements ActionListener {
 			eleccion="Gigabyte";
 			break;
 		case 10:
-			dato1=0.00000095367431640625
-;
+			dato1=0.00000095367431640625;
 			eleccion="Terabyte";
 			break;
 			
@@ -199,88 +217,17 @@ public class MenuByte extends JFrame implements ActionListener {
       
       
 		if(e.getSource()==button) {
+						 
 			
-		
-			 
-			cantidadIngresada=Double.parseDouble(editTexto.getText());
-			
-			if(eleccion2=="bit") {
-				               
-				 datoConvertido=(cantidadIngresada*((1048576/dato1)*8));
-				JOptionPane.showMessageDialog(null,String.format( cantidadIngresada+" "+eleccion+" son: %.2f "+eleccion2,datoConvertido));
-				
-				}
-			
-			if(eleccion2=="Kilobit") {
-				       
-				 datoConvertido=(cantidadIngresada*((1024/dato1)*8));
-				JOptionPane.showMessageDialog(null, String.format(cantidadIngresada+" "+eleccion+" son: %.2f "+eleccion2,datoConvertido));
-				
-			
-				}
-			
-			if(eleccion2=="Megabit") {
-				 datoConvertido=(cantidadIngresada*((1/dato1)*8));
-				JOptionPane.showMessageDialog(null,String.format( cantidadIngresada+" "+eleccion+" son: %.3f "+eleccion2,datoConvertido));
-				
-				
-				}
-			
-			if(eleccion2=="Gigabit") {
-				
-				  datoConvertido=(cantidadIngresada*((0.0009765625/dato1)*8));
-				JOptionPane.showMessageDialog(null, String.format(cantidadIngresada+" "+eleccion+" son: %.6f "+eleccion2,datoConvertido));
-							
-			}
-			
-           if(eleccion2=="Terabit") {
-				
-        	   datoConvertido=(cantidadIngresada*((0.00000095367431640625/dato1)*8));
-				JOptionPane.showMessageDialog(null, String.format(cantidadIngresada+" "+eleccion+" pesos son: %.9f "+eleccion2,datoConvertido));
-							
-			}
-           
-           if(eleccion2=="Byte") {
-				
-				datoConvertido=cantidadIngresada*(1048576/dato1);
-				JOptionPane.showMessageDialog(null,String.format( cantidadIngresada+" "+eleccion+" son: %.2f "+eleccion2,datoConvertido));
-				
-				}
-			
-			if(eleccion2=="Kilobyte") {
-				
-				datoConvertido=(cantidadIngresada)*(1024/dato1);
-				JOptionPane.showMessageDialog(null, String.format(cantidadIngresada+" "+eleccion+" son: %.2f "+eleccion2,datoConvertido));
-				
-			
-				}
-			
-			if(eleccion2=="Megabyte") {
-				datoConvertido=cantidadIngresada*(1/dato1);
-				JOptionPane.showMessageDialog(null,String.format( cantidadIngresada+" "+eleccion+" son: %.3f "+eleccion2,datoConvertido));
-				
-				
-				}
-			
-			if(eleccion2=="Gigabyte") {
+			 if (validarNumero(editTexto.getText())) {
+	        	 
+				 cantidadIngresada=Double.parseDouble(editTexto.getText());
 				 
-				 datoConvertido=cantidadIngresada*(0.0009765625/dato1);
-				JOptionPane.showMessageDialog(null, String.format(cantidadIngresada+" "+eleccion+" son: %.6f "+eleccion2,datoConvertido));
-							
-			}
+	        	 logicaConversion(cantidadIngresada);		        	 
+	                            
+			 }  
+						
 			
-          if(eleccion2=="Terabyte") {
-        	  
-        	    datoConvertido=cantidadIngresada*(0.00000095367431640625/dato1);
-				JOptionPane.showMessageDialog(null, String.format(cantidadIngresada+" "+eleccion+"  son: %.9f "+eleccion2,datoConvertido));
-							
-			}
-           
-           if(eleccion==""||eleccion2=="") {
-				
-				JOptionPane.showMessageDialog(null,"Elige opción válida");
-				
-				}
                 
 			}
 		
@@ -298,6 +245,87 @@ public class MenuByte extends JFrame implements ActionListener {
 	       		dispose(); //Destroy the JFrame object
 	          	
 	          		}
+		
+	}
+
+	
+	
+	public void logicaConversion( Double cantidadIngresada) {
+		
+		if(eleccion2=="bit") {
+            
+			 datoConvertido=(cantidadIngresada*((1048576/dato1)*8));
+			
+			}
+		
+		if(eleccion2=="Kilobit") {
+			       
+			 datoConvertido=(cantidadIngresada*((1024/dato1)*8));
+			
+		
+			}
+		
+		if(eleccion2=="Megabit") {
+			 datoConvertido=(cantidadIngresada*((1/dato1)*8));
+			
+			}
+		
+		if(eleccion2=="Gigabit") {
+			
+			  datoConvertido=(cantidadIngresada*((0.0009765625/dato1)*8));
+						
+		}
+		
+      if(eleccion2=="Terabit") {
+			
+   	   datoConvertido=(cantidadIngresada*((0.00000095367431640625/dato1)*8));
+						
+		}
+      
+      if(eleccion2=="Byte") {
+			
+			datoConvertido=cantidadIngresada*(1048576/dato1);
+			
+			}
+		
+		if(eleccion2=="Kilobyte") {
+			
+			datoConvertido=(cantidadIngresada)*(1024/dato1);
+			
+		
+			}
+		
+		if(eleccion2=="Megabyte") {
+			datoConvertido=cantidadIngresada*(1/dato1);
+			
+			
+			}
+		
+		if(eleccion2=="Gigabyte") {
+			 
+			 datoConvertido=cantidadIngresada*(0.0009765625/dato1);
+						
+		}
+		
+     if(eleccion2=="Terabyte") {
+   	  
+   	    datoConvertido=cantidadIngresada*(0.00000095367431640625/dato1);
+							
+		}
+      
+      if(eleccion==""||eleccion2=="") {
+			
+			JOptionPane.showMessageDialog(null,"Elige opción válida");
+			
+			}
+      
+      else {
+    	  JOptionPane.showMessageDialog(null, String.format(cantidadIngresada+" "+eleccion+"  son: %.6f "+eleccion2,datoConvertido));
+  		
+      }
+      
+      
+		
 		
 	}
 	

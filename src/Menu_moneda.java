@@ -14,40 +14,26 @@ import java.awt.event.ActionListener;
 public class Menu_moneda extends JFrame implements ActionListener {
 	
 	private JComboBox comboBox, comboBox2;
-	private JTextField editTexto;
-	private JButton button,button2,button3;
+	private JButton button;
 	private String eleccion="", eleccion2="";
-	private double cantidadIngresada=0.00,moneda1=0.0;
+	private double moneda1=0.0;
 	private double monedaConvertida=0.00;
 	
 	Menu_moneda(){
 		
 		
 	 combo();
-	 editText();
 	 botones();
 	 cuadro();
 		
 	}
 	
-	public void editText() {
-		
-		editTexto=new  JTextField();
-		editTexto.setText("0.0");
-		editTexto.setBounds(100, 140, 180, 25);
-		
-	}
+	
 	
 	public void botones() {
-		button=new JButton("Convertir");
-		button2=new JButton("Menú");
-		button3=new JButton("Salir");
-		button.setBounds(80,190,100,30);
-		button2.setBounds(220,190,100,30);
-		button3.setBounds(150,240,100,30);
-		button.addActionListener(this);
-		button2.addActionListener(this);
-		button3.addActionListener(this);
+		button=new JButton("Ok");;
+		button.setBounds(140,140,100,30);;
+		button.addActionListener(this);;
 		
 	}
 	
@@ -55,7 +41,7 @@ public class Menu_moneda extends JFrame implements ActionListener {
 		
 		this.setTitle("Conversor Moneda");
 	    this.setLocationRelativeTo(null);
-		this.setSize(400,350);
+		this.setSize(400,230);
 		this.setLayout(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
@@ -64,18 +50,15 @@ public class Menu_moneda extends JFrame implements ActionListener {
 		this.getContentPane().setBackground(Color.black);
 		this.add(comboBox);
 		this.add(comboBox2);
-		this.add(button);
-		this.add(button2);
-		this.add(button3);
-		this.add(editTexto);
-		
+		this.add(button);;
 	}
          
          public void combo() {
      		
          	String[] opciones= {"Seleccione Moneda -->",
          			"Moneda Mexicana","Moneda Argentina",
-         	"Moneda Colombiana","Moneda Brazileña", "Moneda Estadounidense"};
+         	"Moneda Colombiana","Moneda Brazileña", "Moneda Estadounidense",
+         	"Moneda Española", "Moneda Inglesa", "Moneda Japonesa", "Moneda Coreana"};
      		
      		comboBox=new JComboBox(opciones);
      		comboBox.addActionListener(this);
@@ -89,6 +72,144 @@ public class Menu_moneda extends JFrame implements ActionListener {
      		this.pack();
      		
  	}
+         
+         public void inputDialgo() {
+        	 
+        	 
+ 			
+				if(eleccion==""||eleccion2=="") {
+				
+				JOptionPane.showMessageDialog(null,"Elige opción válida");
+				
+				}else {
+				  
+				String cantidad = JOptionPane.showInputDialog(null,"Ingresa cantidad a convertir");
+				
+		 
+		         if (validarNumero(cantidad)) {
+		        	 
+		        	 double cantidadIngresada= Double.parseDouble(cantidad);
+		        	 logicaConversion(cantidadIngresada);		        	 
+		                             }         		        	
+				}	
+  	}
+         
+         public void  logicaConversion(Double cantidad){
+        	 
+ 			if(eleccion=="Moneda Mexicana") {
+ 				
+ 				monedaConvertida=cantidad*(1/moneda1);
+ 				JOptionPane.showMessageDialog(null,String.format( "$"+cantidad+" "+eleccion2+" son: %.3f pesos mexicanos",monedaConvertida));
+ 				
+ 				}
+ 			
+ 			if(eleccion=="Moneda Argentina") {
+ 				
+ 				monedaConvertida=(cantidad)*(11.117038/moneda1);
+ 				JOptionPane.showMessageDialog(null, String.format("$"+cantidad+" "+eleccion2+" son: %.3f pesos argentino",monedaConvertida));
+ 				
+ 			
+ 				}
+ 			
+ 			if(eleccion=="Moneda Colombiana") {
+ 				monedaConvertida=cantidad*(265.64856/moneda1);
+ 				JOptionPane.showMessageDialog(null,String.format( "$"+cantidad+" "+eleccion2+" son: %.3f pesos colombianos",monedaConvertida));
+ 				
+ 				
+ 				}
+ 			
+ 			if(eleccion=="Moneda Brazileña") {
+ 				
+ 				monedaConvertida=cantidad*(0.2855918/moneda1);
+ 				JOptionPane.showMessageDialog(null, String.format("$"+cantidad+" "+eleccion2+" son: %.3f Reales",monedaConvertida));
+ 							
+ 			}
+ 			
+         if(eleccion=="Moneda Estaunidense") {
+ 				
+ 				monedaConvertida=cantidad*(0.055591953/moneda1);
+ 				JOptionPane.showMessageDialog(null, String.format(cantidad+" "+eleccion2+" son: %.3f Dolares",monedaConvertida));
+ 							
+ 			}
+         
+         if(eleccion=="Moneda Española") {
+ 				
+ 				monedaConvertida=cantidad*(0.052712178/moneda1);
+ 				JOptionPane.showMessageDialog(null, String.format(cantidad+" "+eleccion2+" son: %.3f Euros",monedaConvertida));
+ 							
+ 			}
+         if(eleccion=="Moneda Inglesa") {
+ 				
+ 				monedaConvertida=cantidad*(0.046949866/moneda1);
+ 				JOptionPane.showMessageDialog(null, String.format(cantidad+" "+eleccion2+" son: %.3f Libras",monedaConvertida));
+ 							
+ 			}
+         if(eleccion=="Moneda Japonesa") {
+ 				
+ 				monedaConvertida=cantidad*(7.628158/moneda1);
+ 				JOptionPane.showMessageDialog(null, String.format(cantidad+" "+eleccion2+" son: %.3f Yenes",monedaConvertida));
+ 							
+ 			}
+       
+         
+         if(eleccion=="Moneda Coreana") {
+ 				
+ 				monedaConvertida=cantidad*(73.233996/moneda1);
+ 				JOptionPane.showMessageDialog(null, String.format(cantidad+" "+eleccion2+" son: %.3f Souls",monedaConvertida));
+ 							
+ 			}
+         
+         
+         ventanaContinuar();
+         	 
+         }
+         
+         
+         public void ventanaContinuar() {
+        	   
+        	 int opcion = JOptionPane.showConfirmDialog(null, "¿Quieres realizar otra operción?", "Selecciona opción...",
+      				JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);
+              
+                switch(opcion) {
+      		
+      		case 0:			
+      			MyFrame menu =new  MyFrame();
+             		setVisible(false); //you can't see me!
+             		dispose(); //Destroy the JFrame object
+      			break;
+      		case 1:
+      			setVisible(false); //you can't see me!
+             		dispose(); //Destroy the JFrame object	
+      			break;
+      		case 2:
+      			setVisible(false); //you can't see me!
+             		dispose(); //Destroy the JFrame object
+      			break;		
+      		default:
+      			   
+                     }
+                
+         }
+         
+         public Boolean validarNumero(String numero) {
+        	 
+        	 char array[] = numero.toCharArray();
+ 
+        	 for (int i = 0; i < numero.length(); i++) {
+        		 
+        		 int letra=array[i];
+                
+        		 if((letra<48)||(letra>57)&&(letra!=46)){
+		       	  
+        			 JOptionPane.showMessageDialog(null,"Ingresa sólo números");
+        			
+        			 return false;
+                 }
+        		 
+             }   	 
+        	
+        	 return true;
+         }
 
 	
 	
@@ -105,20 +226,36 @@ public class Menu_moneda extends JFrame implements ActionListener {
 			eleccion2="MXN";
 			break;
 		case 2:
-			moneda1=11.072036;
+			moneda1=11.117229;
 			eleccion2="ARG";
 			break;
 		case 3:
-			moneda1=261.22017;
+			moneda1=265.5674;
 			eleccion2="COP";
 			break;
 		case 4:
-			moneda1=0.28625768;
+			moneda1=0.28571214;
 			eleccion2="BRL";
 			break;
 		case 5:
-			moneda1=0.055543552;
+			moneda1=0.055593178;
 			eleccion2="USD";
+			break;
+		case 6:
+			moneda1=0.052712918;
+			eleccion2="EUR";
+			break;
+		case 7:
+			moneda1=0.046943871;
+			eleccion2="GBP";
+			break;
+		case 8:
+			moneda1=7.6278635;
+			eleccion2="JPY";
+			break;
+		case 9:
+			moneda1=73.242927;
+			eleccion2="KRW";
 			break;
 			
 		default:
@@ -148,6 +285,22 @@ public class Menu_moneda extends JFrame implements ActionListener {
 				eleccion="Moneda Estaunidense";				
 				break;
 				
+			case 6:
+				eleccion="Moneda Española";				
+				break;
+				
+			case 7:
+				eleccion="Moneda Inglesa";				
+				break;
+				
+			case 8:
+				eleccion="Moneda Japonesa";				
+				break;
+				
+			case 9:
+				eleccion="Moneda Coreana";				
+				break;
+				
 			default:
 				eleccion="Elige una opción";       
 				}
@@ -158,69 +311,15 @@ public class Menu_moneda extends JFrame implements ActionListener {
 		if(e.getSource()==button) {
 			
 		
-			 
-			cantidadIngresada=Double.parseDouble(editTexto.getText());
+			inputDialgo();
 			
-				if(eleccion==""||eleccion2=="") {
-				
-				JOptionPane.showMessageDialog(null,"Elige opción válida");
-				
-				}else
-			
-			if(eleccion=="Moneda Mexicana") {
-				
-				monedaConvertida=cantidadIngresada*(1/moneda1);
-				JOptionPane.showMessageDialog(null,String.format( "$"+cantidadIngresada+" "+eleccion2+" son: %.3f pesos mexicanos",monedaConvertida));
-				
-				}
-			
-			if(eleccion=="Moneda Argentina") {
-				
-				monedaConvertida=(cantidadIngresada)*(11.072036/moneda1);
-				JOptionPane.showMessageDialog(null, String.format("$"+cantidadIngresada+" "+eleccion2+" son: %.3f pesos argentino",monedaConvertida));
-				
-			
-				}
-			
-			if(eleccion=="Moneda Colombiana") {
-				monedaConvertida=cantidadIngresada*(261.22017/moneda1);
-				JOptionPane.showMessageDialog(null,String.format( "$"+cantidadIngresada+" "+eleccion2+" son: %.3f pesos colombianos",monedaConvertida));
-				
-				
-				}
-			
-			if(eleccion=="Moneda Brazileña") {
-				
-				monedaConvertida=cantidadIngresada*(0.28625768/moneda1);
-				JOptionPane.showMessageDialog(null, String.format("$"+cantidadIngresada+" "+eleccion2+" son: %.3f Reales",monedaConvertida));
-							
-			}
-			
-           if(eleccion=="Moneda Estaunidense") {
-				
-				monedaConvertida=cantidadIngresada*(0.055543552/moneda1);
-				JOptionPane.showMessageDialog(null, String.format(cantidadIngresada+" "+eleccion2+" son: %.3f Dolares",monedaConvertida));
-							
-			}
            
            
                 
 			}
 		
-		 if(e.getSource()==button2) {
-       	  
-	        	MyFrame menu =new  MyFrame();
-	       		setVisible(false); //you can't see me!
-	       		dispose(); //Destroy the JFrame object
-	       	
-	       		}
 	           
-	           if(e.getSource()==button3) {
-	         	  
-	        	setVisible(false); //you can't see me!
-	       		dispose(); //Destroy the JFrame object
-	          	
-	          		}
+	         
 		
 	}
 	
